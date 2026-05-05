@@ -7,3 +7,4 @@ shinylive::export(appdir = "../small_RshinyApp/", destdir = "docs", packages = c
 httpuv::runStaticServer("docs/", port = 8008)
 ```
 
+See R Shiny App in https://sara-ll.github.io/small_RshinyApp/
