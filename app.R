@@ -1,0 +1,24 @@
+library(shiny)
+library(ggplot2)
+library(DT)
+library(S7)
+
+ui <- fluidPage(
+  plotOutput(outputId = "plot",
+             brush = "plot_brush"),
+  DTOutput(outputId = "table")
+)
+
+server <- function(input, output) {
+  output$plot <- renderPlot(
+    ggplot(mtcars) +
+      geom_point(aes(x = mpg,
+                     y = disp))
+  )
+  output$table <- renderDT({
+    brushedPoints(df = mtcars,
+                  brush = input$plot_brush)
+  })
+}
+
+shinyApp(ui = ui, server = server)
